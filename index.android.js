@@ -60,9 +60,9 @@ class realmBugTest extends Component {
     });
 
     const people = realm.objects('Person');
-    const filterTest = people.filtered('identity.name == "Bob"'); // Works fine
+    const filterTest = people.filtered('identity.name CONTAINS[c] "Bob"'); // Works fine
     const sortedTest1 = people.sorted('hasCar'); // Works fine
-    const sortedTest2 = people.sorted('identity.name'); // Red screen of death
+    const sortedTest2 = people.sorted('identity.name'); // RSOD, "Property 'identity.name' does not exist on object type 'person'"
     this.state = {
       person: sortedTest2[0],
       people: people,
